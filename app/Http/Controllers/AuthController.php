@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -41,17 +43,6 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-    public function logout(Request $request)
-    {
-        Auth::logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect()->intended('/');
-    }
-
-
     public function authenticate(Request $request)
     {
         $login = $request->validate([
@@ -62,13 +53,23 @@ class AuthController extends Controller
 
         $remember_me = $request->has('remember_me') ? true : false;
 
+
         if (Auth::attempt($login, $remember = $remember_me)) {
             if (auth()->user()->role == 'admin') {
                 return redirect()->intended('/dashboard');
             }
             return redirect()->intended('/');
         }
+        throw ValidationException::withMessages(['email', 'password' => 'Email/Password salah']);
+    }
 
-        return back();
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->intended('/');
     }
 }

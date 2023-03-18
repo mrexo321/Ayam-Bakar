@@ -1,0 +1,2 @@
+{{-- @dd($productsCategories) --}}
+@dd($articlesCategories)

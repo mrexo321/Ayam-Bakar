@@ -2,11 +2,12 @@
 
 namespace App\View\Components;
 
+use App\Models\Article;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class product extends Component
+class articles extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +22,7 @@ class product extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.product');
+        $articles = Article::latest()->limit(5)->get();
+        return view('components.articles', compact('articles'));
     }
 }

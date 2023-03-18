@@ -2,11 +2,12 @@
 
 namespace App\View\Components;
 
+use App\Models\Product;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Hero extends Component
+class productlist extends Component
 {
     /**
      * Create a new component instance.
@@ -21,13 +22,7 @@ class Hero extends Component
      */
     public function render(): View|Closure|string
     {
-        $menus = [
-            'Products' => 'product',
-            'Articles' => 'articles',
-            'Marketplace' => 'marketplace',
-            'Contact' => 'contact',
-            'History' => 'history'
-        ];
-        return view('components.hero', compact('menus'));
+        $products = Product::all();
+        return view('components.productlist', compact('products'));
     }
 }

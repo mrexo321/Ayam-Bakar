@@ -38,7 +38,7 @@
             </div>
             <div class="flex justify-center gap-x-4 items-center text-sm">
                 @guest
-                    <a class="" href="{{ route('login.index') }}">
+                    <a class="" href="{{ route('login') }}">
                         <button class="rounded-md text-orange-600 font-semibold bg-white px-4 py-1">Login</button>
                     </a>
                     <a href="{{ route('register') }}">

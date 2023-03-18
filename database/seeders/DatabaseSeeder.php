@@ -3,8 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+
+use App\Models\Article;
+use App\Models\Category;
 use App\Models\User;
+use App\Models\Product;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +24,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         User::factory(3)->create();
+        Category::factory(5)->create();
+        Product::factory(5)->create();
+        Article::factory(5)->create();
     }
 }
