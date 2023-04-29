@@ -21,6 +21,11 @@ class dashsidebar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dashsidebar');
+        $menus =
+            [
+                'History' => 'history',
+                'Reports' => 'report',
+            ];
+        return view('components.dashsidebar', compact('menus'));
     }
 }

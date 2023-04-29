@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Tag;
+use App\Models\Cart;
+use App\Models\User;
 use App\Models\Article;
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -20,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -32,12 +35,24 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('product', function ($product) {
             return Product::where('identifier', $product)->orWhere('name', $product)->firstOrFail();
         });
+
+        Route::bind('user', function ($user) {
+            return User::where('identifier', $user)->orWhere('name', $user)->firstOrFail();
+        });
         Route::bind('article', function ($article) {
             return Article::where('slug', $article)->orWhere('title', $article)->firstOrFail();
         });
 
         Route::bind('category', function ($category) {
             return Category::where('slug', $category)->orWhere('name', $category)->firstOrFail();
+        });
+
+        Route::bind('tag', function ($tag) {
+            return Tag::where('name', $tag)->orWhere('slug', $tag)->firstOrFail();
+        });
+
+        Route::bind('cart', function ($cart) {
+            return Cart::where('product_id', $cart)->firstOrFail();
         });
 
         $this->routes(function () {

@@ -26,18 +26,22 @@ class AuthController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|min:4',
-            'email' => 'required|email',
-            'password' => 'required|min:4'
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|min:4',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:4'
+            ]);
 
-        $registeredUser = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'identifier' => 'U' . Str::random(7)
-        ]);
+            $registeredUser = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'identifier' => 'U' . Str::random(7)
+            ]);
+        } catch (\Throwable $e) {
+            throw $e;
+        }
 
         Auth::loginUsingId($registeredUser->id);
         return redirect('/');

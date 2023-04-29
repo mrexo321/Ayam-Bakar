@@ -3,17 +3,20 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
+use App\Models\Cart;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class Hero extends Component
 {
     /**
      * Create a new component instance.
      */
+
+
     public function __construct()
     {
-        //
     }
 
     /**
@@ -21,13 +24,7 @@ class Hero extends Component
      */
     public function render(): View|Closure|string
     {
-        $menus = [
-            'Products' => 'product',
-            'Articles' => 'articles',
-            'Marketplace' => 'marketplace',
-            'Contact' => 'contact',
-            'History' => 'history'
-        ];
-        return view('components.hero', compact('menus'));
+
+        return view('components.hero');
     }
 }

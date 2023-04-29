@@ -4,10 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Article;
-use App\Models\Category;
+use App\Models\Tag;
 use App\Models\User;
+use App\Models\Article;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\ProductCategory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +26,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         User::factory(3)->create();
+        Tag::factory(3)->create();
         Category::factory(5)->create();
         Product::factory(5)->create();
         Article::factory(5)->create();

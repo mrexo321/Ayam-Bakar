@@ -23,7 +23,7 @@ class ArticleFactory extends Factory
             'subtitle' => fake()->sentence(),
             'image' => 'http://localhost:8000/assets/Logo.png',
             'slug' => Str::of(fake()->name())->slug('-'),
-            'category_id' => rand(1, 3),
+            // 'tag_id' => rand(1, 3),
             'user_id' => rand(1, 2)
         ];
     }

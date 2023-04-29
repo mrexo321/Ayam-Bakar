@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'name' => fake()->name(),
             'price' => rand(10000, 30000),
             'stock' => rand(1, 10),
-            'category_id' => fake()->numberBetween(1, 5),
+            // 'category_id' => fake()->numberBetween(1, 5),
             'identifier' => 'P' . Str::random(5)
         ];
     }

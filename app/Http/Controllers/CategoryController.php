@@ -14,10 +14,10 @@ class CategoryController extends Controller
     {
         return view('categories.index');
     }
+
     public function show(Category $category)
     {
-        $productsCategories = Product::where('category_id', $category->id)->get();
-        $articlesCategories = Article::where('category_id', $category->id)->get();
-        return view('categories.show', compact('productsCategories', 'articlesCategories'));
+        // $productsCategories = Product::where('category_id', $category->id)->get();
+        return view('categories.show', compact('category'));
     }
 }
